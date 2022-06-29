@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Productos</title>
+</head>
+<body>
+    <h1>Lista de productos</h1>
+    <ul>
+        {% for p in lista_productos %}
+            <li>{{p.nombre}}</li>
+        {% empty %}
+            <li>No existen productos</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
