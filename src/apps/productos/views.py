@@ -10,3 +10,4 @@ def listar(request):
         "lista_productos": Productos.objects.all()
     }
     return render(request, template_name, ctx)
+
