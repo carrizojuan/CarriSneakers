@@ -2,4 +2,4 @@ ve_femme
 .idea/
 *.pyc
 .pyc
-dev.py
+src/hugoOfemme/settings/dev.py
