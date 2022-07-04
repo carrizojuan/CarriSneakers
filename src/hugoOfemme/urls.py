@@ -21,5 +21,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("Productos/", include("apps.productos.urls")),
-    path("", views.inicio, name="inicio")
+    path("", views.inicio, name="inicio"),
+    path("login/", views.iniciarSesion, name="login")
 ]
+
+

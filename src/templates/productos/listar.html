@@ -5,14 +5,7 @@
     <div class="row">
         {% for p in lista_productos %}
             <div class="col-sm-3">
-                <div class="card">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{p.nombre}}</h5>
-                        <p class="card-text">Aca va la descripcion</p>
-                        <a href="#" class="btn btn-primary">Ver mas</a>
-                    </div>
-                </div>
+                {% include 'productos/includes/card_producto.html' %}
             </div>
         {% empty %}
             <li>No existen productos</li>

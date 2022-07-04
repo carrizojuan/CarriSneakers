@@ -1,0 +1,14 @@
+div.container div.row div.col div.card {
+    margin-top: 15%;
+}
+div.container div.row div.col div.card div.card-body {
+    padding: 15px 20px;
+}
+div.container div.row div.col div.card div.card-footer {
+    padding: 10px 20px;
+}
+
+.volverbtn{
+    padding-top: 15px;
+    text-align: center;
+}
