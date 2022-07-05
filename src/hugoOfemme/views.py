@@ -11,4 +11,4 @@ def inicio(request):
 
 def iniciarSesion(request):
     template_name = "login.html"
-    return render(request, template_name)
+    return render(request, template_name, {})

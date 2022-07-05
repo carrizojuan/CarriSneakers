@@ -6,10 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    
     <!-- CSS only -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <!-- JavaScript Bundle with Popper -->
+    
     <title>Inicio</title>
 </head>
 <body>
@@ -27,7 +29,7 @@
                     <a class="nav-link" href="#">-</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">-</a>
+                    <a class="nav-link" href="#">-</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#">-</a>
@@ -40,7 +42,7 @@
         <div>
             <ul class="navbar-nav pipe-navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}" rel="noopener">Iniciar Sesion</a>
+                    <a class="nav-link prueba" href="{% url 'login' %}" rel="noopener">Iniciar Sesion</a>
                 </li>
             </ul>
         </div>
