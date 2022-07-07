@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from .models import Usuario
 
@@ -13,3 +14,13 @@ class UsuarioForm(UserCreationForm):
     class Meta:
         model = Usuario
         fields = ("first_name", "last_name", "username", "email")
+    
+    # Ejemplo de validacion de campo
+    """
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        if not username.isalpha():
+            raise ValidationError("El nombre de usuario no puede contener numeros")
+
+        return username
+    """

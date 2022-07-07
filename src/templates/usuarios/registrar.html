@@ -3,12 +3,18 @@
 {% block contenido %}
 
 <h1 class="text-center">Registrarme</h1>
-{{form.as_p}}
+
+<form class="row g-3" method="POST">
+    {% csrf_token %}
+    {% include 'includes/form_errors.html' %}
+    {{form.as_p}}
+    <hr/>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Registrarme</button>
+    </div>
+</form>
 
 
-<div class="col-12">
-    <button type="submit" class="btn btn-primary">Registrarme</button>
-</div>
 
 
 

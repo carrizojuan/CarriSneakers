@@ -39,23 +39,7 @@
       {% csrf_token %}
       <a href="{% url 'inicio' %}"><img src="https://cdn-icons-png.flaticon.com/512/271/271218.png" width="20px"></a>
       <h2 class="text-center">Iniciar Sesion</h2>
-      {% if form.errors %}
-
-        {% for field in form %}
-          {% for error in field.errors %}
-            <div class="alert alert-danger" role="alert">
-              <strong>{{field}}: </strong> {{error}}
-            </div>
-          {% endfor %}
-        {% endfor %}
-
-        {% for error in form.non_field_errors %}
-          <div class="alert alert-danger" role="alert">
-            {{error}}
-          </div> 
-        {% endfor %}
-      {% endif %}
-          
+      {% include 'includes/form_errors.html' %} 
       <div class="form-group">
           <input type="text" class="form-control" placeholder="Usuario" name="username" required="required">
       </div>
