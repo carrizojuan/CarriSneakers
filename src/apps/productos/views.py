@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Productos
+from .models import Producto
 # Create your views here.
 
 
@@ -7,7 +7,7 @@ from .models import Productos
 def listar(request):
     template_name = "productos/listar.html"
     ctx = {
-        "lista_productos": Productos.objects.all()
+        "lista_productos": Producto.objects.all()
     }
     return render(request, template_name, ctx)
 

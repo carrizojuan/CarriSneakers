@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand navbar-light bg-light flex-column flex-md-row pipe-navbar justify-md-content-between">
+    <a class="navbar-brand" href="{% url 'inicio' %}"><img src="https://pipe.bot/img/logo.svg" width="30" height="30" class="d-inline-block align-top" /> CarriSneakers</a>
+    <div class="navbar-nav-scroll ml-md-auto">
+        <ul class="navbar-nav pipe-navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link prueba" href="{% url 'logout' %}" rel="noopener">{{user}}</a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'productos:listar' %}" rel="noopener">Catalogo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" target="_blank" rel="noopener">-</a>
+            </li>       
+            <li class="nav-item">
+                <a class="nav-link" href="#">-</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">-</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">-</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" target="_blank" rel="noopener">-</a>
+            </li>   
+        </ul>
+    </div>
+    <div>
+        <ul class="navbar-nav pipe-navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link prueba" href="{% url 'logout' %}" rel="noopener">Cerrar Sesion</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link prueba" href="{% url 'login' %}" rel="noopener">Iniciar Sesion</a>
+                </li>
+            {% endif %}
+            
+            
+        </ul>
+    </div>
+</nav> 

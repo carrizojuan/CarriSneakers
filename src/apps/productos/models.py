@@ -2,7 +2,7 @@ from pyexpat import model
 from django.db import models
 
 # Create your models here.
-class Productos(models.Model):
+class Producto(models.Model):
     nombre = models.CharField(max_length=250)
     precio = models.DecimalField(max_digits=9, decimal_places=2)
     cantidad = models.IntegerField(default=0)
