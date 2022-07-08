@@ -29,9 +29,9 @@ urlpatterns = [
     path("Usuario/", include("apps.usuarios.urls")),
 
     #Urls propias del proyecto
-    path("", views.inicio, name="inicio"),
+    #path("", views.inicio, name="inicio"),
+    path("", views.Inicio.as_view(), name = "inicio"),
     path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
-    #path("login/", views.iniciarSesion, name="login")
     path("logout/", auth_views.logout_then_login, name="logout")
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
