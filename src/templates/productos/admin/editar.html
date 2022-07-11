@@ -1,6 +1,7 @@
 {% extends 'base/admin/base.html' %}
 
 {% block contenido %}
+    # enctype para trabajar con imagenes en el formulario
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">

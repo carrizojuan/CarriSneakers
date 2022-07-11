@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import Producto
 from django.views.generic import ListView, CreateView
+from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ProductoForm
 from django.urls import reverse_lazy
@@ -40,6 +41,14 @@ class ListarAdmin(LoginRequiredMixin, ListView):
 
 class Crear(LoginRequiredMixin, CreateView):
     template_name = "productos/admin/nuevo.html"
+    model = Producto
+    form_class = ProductoForm
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy("productos:admin_listar")
+
+class Editar(LoginRequiredMixin, UpdateView):
+    template_name = "productos/admin/editar.html"
     model = Producto
     form_class = ProductoForm
 
