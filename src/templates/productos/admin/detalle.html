@@ -1,0 +1,29 @@
+{% extends 'base/admin/base.html' %}
+
+{% block contenido %}
+    <h1>{{object.nombre}}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            {% if object.imagen %}
+                <img src="{{object.imagen.url}}" alt="imagen">
+            {% else %}
+                <p>Imagen no disponible</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1>$ {{object.precio}}</h1>
+            <small>Total de unidades: <b>{{object.cantidad}}</b></small>
+            <hr>
+            {% if object.activo %}
+                <small>El producto se encuentra activo</small>
+            {% else %}
+                <small>El producto no se encuentra activo</small>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'productos:admin_listar' %}">Volver</a>
+        </div>
+    </div>
+{% endblock contenido %}

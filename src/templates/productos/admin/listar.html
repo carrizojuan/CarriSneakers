@@ -21,8 +21,8 @@
                     <td>{{producto.activo}}</td>
                     <td>
                         <a href="{% url 'productos:admin_editar' producto.id %}">Editar</a>
-                        <a href="#">Borrar</a>
-                        <a href="#">Visualizar</a>
+                        <a href="{% url 'productos:admin_borrar' producto.id %}">Borrar</a>
+                        <a href="{% url 'productos:admin_detalle' producto.id %}">Visualizar</a>
                     </td>
                 </tr>        
             {% endfor %}

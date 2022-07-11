@@ -10,6 +10,7 @@
         {{form.as_p}}
         <a href="{% url 'productos:admin_listar' %}">Cancelar</a>
         <button class="btn btn-primary" type="submit">Guardar</button>
+        <a href="{% url 'productos:admin_borrar' object.id %}">Borrar</a>
     </form>
 
 {% endblock contenido%}
