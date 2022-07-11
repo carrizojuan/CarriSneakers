@@ -1,6 +1,13 @@
+from re import template
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from .models import Producto
-from django.views.generic.list import ListView
+from django.views.generic import ListView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import ProductoForm
+from django.urls import reverse_lazy
+
+
 # Create your views here.
 
 
@@ -20,3 +27,21 @@ class Listar(ListView):
 
     def get_queryset(self):
         return Producto.objects.filter(activo=True)
+
+# --------------------------------------------------------
+#               VISTAS PARA EL ADMIN
+# --------------------------------------------------------
+
+
+class ListarAdmin(LoginRequiredMixin, ListView):
+    template_name = "productos/admin/listar.html"
+    model = Producto
+    context_object_name = "lista_productos"
+
+class Crear(LoginRequiredMixin, CreateView):
+    template_name = "productos/admin/nuevo.html"
+    model = Producto
+    form_class = ProductoForm
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy("productos:admin_listar")

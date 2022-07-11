@@ -1,0 +1,33 @@
+{% extends 'base/admin/base.html' %}
+
+{% block contenido %}
+    <a href="{% url 'productos:admin_nuevo' %}">Nuevo producto</a>
+    <table class="table">
+        <thead>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Activo</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for producto in lista_productos %}
+                <tr>
+                    <th scope="row">{{producto.id}}</th>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.cantidad}}</td>
+                    <td>{{producto.activo}}</td>
+                    <td>
+                        <a href="#">Editar</a>
+                        <a href="#">Borrar</a>
+                        <a href="#">Visualizar</a>
+                    </td>
+                </tr>        
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock contenido %}
