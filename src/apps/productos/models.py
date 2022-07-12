@@ -1,20 +1,5 @@
 from pyexpat import model
 from django.db import models
-from django.test import tag
-
-class Tag(models.Model):
-    nombre = models.CharField(max_length=250)
-
-    class Meta:
-        db_table = "tags"
-
-    def __str__(self):
-        return self.nombre
-
-""" class ProductoTag(models.Model):
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE) """
-
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=250)
@@ -25,6 +10,15 @@ class Marca(models.Model):
     def __str__(self):
         return self.nombre
 
+
+class Tag(models.Model):
+    nombre = models.CharField(max_length=250)
+
+    class Meta:
+        db_table = "tags"
+
+    def __str__(self):
+        return self.nombre
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=250)
@@ -40,4 +34,16 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+
+class ProductoTag(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+
+
+
+
+
+
 

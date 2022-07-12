@@ -46,6 +46,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'apps.productos',
     'apps.usuarios',
+    'apps.carritos'
 ]
 
 THIRD_APPS = []
