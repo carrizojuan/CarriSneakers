@@ -25,7 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(0=_=y_0y3#p0d%rjsvl--f&!7dex#)!$mobbg!440fmmdvkui'
 
 
-ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 

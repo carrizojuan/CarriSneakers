@@ -1,13 +1,16 @@
-from re import template
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from .models import Producto
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import ProductoForm
 from django.urls import reverse_lazy
+
+from apps.core.decorators import superuser_required
+from apps.core.mixins import SuperUserRequiredMixin
+
+from .models import Producto
+from .forms import ProductoForm
 
 
 # Create your views here.
@@ -35,12 +38,15 @@ class Listar(ListView):
 # --------------------------------------------------------
 
 
-class ListarAdmin(LoginRequiredMixin, ListView):
+class ListarAdmin(SuperUserRequiredMixin,LoginRequiredMixin, ListView):
     template_name = "productos/admin/listar.html"
     model = Producto
     context_object_name = "lista_productos"
 
-class Crear(LoginRequiredMixin, CreateView):
+    
+    
+
+class Crear(SuperUserRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = "productos/admin/nuevo.html"
     model = Producto
     form_class = ProductoForm
@@ -48,7 +54,7 @@ class Crear(LoginRequiredMixin, CreateView):
     def get_success_url(self, **kwargs):
         return reverse_lazy("productos:admin_listar")
 
-class Editar(LoginRequiredMixin, UpdateView):
+class Editar(SuperUserRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name = "productos/admin/editar.html"
     model = Producto
     form_class = ProductoForm
@@ -56,11 +62,12 @@ class Editar(LoginRequiredMixin, UpdateView):
     def get_success_url(self, **kwargs):
         return reverse_lazy("productos:admin_listar")
 
-class Detalle(LoginRequiredMixin, DetailView):
+class Detalle(SuperUserRequiredMixin, LoginRequiredMixin, DetailView):
     model = Producto
     template_name = "productos/admin/detalle.html"
 
 
+@superuser_required()
 def borrar(request, pk):
     p = Producto.objects.get(id=pk)
     p.delete()
