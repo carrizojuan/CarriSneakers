@@ -1,6 +1,10 @@
 {% extends 'base/base.html' %}
 
 {% block contenido %}
+    <form method="GET" class="form-inline" style="margin-top: 10px;">
+        <input class="form-control mr-sm-2" type="search" name="nombre_producto" value={{nombre_producto}}>
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
     <h3>Lista de productos</h3>
     <div class="row">
         {% for p in lista_productos %}

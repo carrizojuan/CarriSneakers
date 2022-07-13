@@ -30,8 +30,17 @@ class Listar(ListView):
     model = Producto
     context_object_name = "lista_productos"
 
+    def get_context_data(self, **kwargs):
+        context = super(Listar, self).get_context_data(**kwargs) 
+        context["nombre_producto"] = self.request.GET.get("nombre_producto", "")
+        return context
+        
     def get_queryset(self):
-        return Producto.objects.filter(activo=True)
+        query = Producto.objects.filter(activo=True)
+        nombre_producto = self.request.GET.get("nombre_producto", None)
+        if nombre_producto:
+            query = query.filter(nombre__icontains=nombre_producto) 
+        return query
 
 # --------------------------------------------------------
 #               VISTAS PARA EL ADMIN
