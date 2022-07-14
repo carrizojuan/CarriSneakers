@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load productos_tags %}
 
 {% block header %}
     <header class="bg-dark py-5">
@@ -14,6 +14,7 @@
 
 {% block contenido %}
     <h3 class="text-center">Ultimas novedades</h3>
+    {% saludar %}
     <div class="row">
         {% for p in ult_productos %}
             <div class="col-sm-3">
