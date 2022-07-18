@@ -1,14 +1,40 @@
-<div class="card">
-    {% if p.imagen %}
-        <img class="card-img-top" src="{{p.imagen.url}}" alt="Card image cap">
-    {% else %}
-        <img class="card-img-top" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARYAAAC1CAMAAACtbCCJAAAAA1BMVEWUlZnYhXhJAAAASElEQVR4nO3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBjA8VDAAH+iSvZAAAAAElFTkSuQmCC" alt="Card image cap">
+
+<div class="card h-100">
+    <!-- Sale badge-->
+    {% if user.is_authenticated %}
+        <div class="position-absolute" style="top: 0.5rem; right: 0.5rem" id="favourite-section">
+            {% if p in fav_productos %}
+                <a href="{% url 'productos:agregar_favorito' id=p.id %}">
+                    <i class="fa-solid fa-heart fa-lg"></i>
+                </a>
+            {% else %}
+                <a href="{% url 'productos:agregar_favorito' id=p.id %}">
+                    <i class="fa-regular fa-heart fa-lg"></i>
+                </a>
+            {% endif %}  
+        </div>
     {% endif %}
-    <span>{{p.marca.nombre}}</span>
-    <div class="card-body">
-        <h5 class="card-title">{{p.nombre}}</h5>
-        <p class="card-text">Aca va la descripcion</p>
-        <p class="card-text">${{p.precio}}</p>
-        <a href="#" class="btn btn-primary">Ver mas</a>
+    
+    <!-- Product image-->
+    {% if p.imagen %}
+        <img class="card-img-top" src="{{p.imagen.url}}" alt="Card image cap" height="250px">
+    {% else %}
+        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
+    {% endif %}
+    <!-- Product details-->
+    <div class="card-body p-4">
+        <a href="{% url 'productos:detalle' pk=p.id%}" style="text-decoration:none; color: inherit">
+            <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">{{p.marca.nombre}} {{p.nombre}}</h5>
+                <!-- Product price-->
+                <p class="card-text">${{p.precio}}</p>
+                
+            </div>
+        </a>    
+    </div>
+    <!-- Product actions-->
+    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Agregar a carrito</a></div>
     </div>
 </div>

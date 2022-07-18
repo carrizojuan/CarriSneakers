@@ -23,7 +23,7 @@
         {{user.firstname | ejemplo:"Sin nombre"}}
     {% endcomment %}
     
-    <div class="row">
+    {% comment %} <div class="row">
         {% for p in ult_productos %}
             <div class="col-sm-3">
                 {% include 'productos/includes/card_producto.html' %}
@@ -31,5 +31,16 @@
         {% empty %}
             <li>No existen productos</li>
         {% endfor %}
+    </div> {% endcomment %}
+
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for p in ult_productos %}
+            <div class="col mb-5">
+                {% include 'productos/includes/card_producto.html' %}
+            </div>
+        {% empty %}
+            <li>No existen productos</li>
+        {% endfor %}
     </div>
+    
 {% endblock contenido %}

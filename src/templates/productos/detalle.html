@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+
+{% block contenido %}
+    <div class="row">
+        <div class="position-relative" style="top: -1rem; right: 0.5rem" id="favourite-section">
+            {% if es_favorito %}
+                <a href="{% url 'productos:agregar_favorito' id=producto.id %}">
+                    <i class="fa-solid fa-heart fa-lg"></i>
+                </a>
+            {% else %}
+                <a href="{% url 'productos:agregar_favorito' id=producto.id %}">
+                    <i class="fa-regular fa-heart fa-lg"></i>
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1>{{producto.marca}} {{producto.nombre}}</h1> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {% if producto.imagen %}
+                <img src="{{producto.imagen.url}}" alt="imagen">
+            {% else %}
+                <p>Imagen no disponible</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1>$ {{producto.precio}}</h1>
+            <small>Total de unidades: <b>{{producto.cantidad}}</b></small>
+            <hr>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'productos:admin_listar' %}">Volver</a>
+        </div>
+    </div>
+    
+{% endblock contenido %}

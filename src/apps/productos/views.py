@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
@@ -33,6 +34,14 @@ class Listar(ListView):
     def get_context_data(self, **kwargs):
         context = super(Listar, self).get_context_data(**kwargs) 
         context["nombre_producto"] = self.request.GET.get("nombre_producto", "")
+        productos = Producto.objects.filter(activo=True)
+        
+        if self.request.user.is_authenticated:
+            favoritos = []
+            for p in productos:
+                if p.favorito.filter(id=self.request.user.id).exists():
+                    favoritos.append(p)
+            context["fav_productos"] = favoritos
         return context
         
     def get_queryset(self):
@@ -41,6 +50,31 @@ class Listar(ListView):
         if nombre_producto:
             query = query.filter(nombre__icontains=nombre_producto) 
         return query
+    
+@superuser_required()
+def producto_detalle(request, pk):
+    p = get_object_or_404(Producto, id=pk)
+    ctx = {
+        "producto": p
+    }
+    if request.user.is_authenticated:
+        favorito = False
+        if p.favorito.filter(id=request.user.id).exists():
+            favorito = True
+    ctx["es_favorito"] = favorito
+    return render(request, "productos/detalle.html", ctx)
+
+@superuser_required()
+def agregar_favorito(request, id):
+    p = get_object_or_404(Producto, id=id)
+    if p.favorito.filter(id=request.user.id).exists():
+        p.favorito.remove(request.user)
+    else:
+        p.favorito.add(request.user)
+
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+
 
 # --------------------------------------------------------
 #               VISTAS PARA EL ADMIN

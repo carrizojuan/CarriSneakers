@@ -1,5 +1,4 @@
 from distutils.command import upload
-import imp
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -7,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     foto = models.ImageField(upload_to = "perfil", null=True)
+    #favoritos = models.ManyToManyField(Producto)
 
     class Meta:
         db_table = "usuarios"

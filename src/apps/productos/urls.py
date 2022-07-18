@@ -14,7 +14,9 @@ urladmin = [
 
 urlsite = [
     #path("ListarProductos/", views.listar, name="listar"),
-    path("Listar/", views.Listar.as_view(), name="listar")
+    path("Listar/", views.Listar.as_view(), name="listar"),
+    path("<int:pk>/", views.producto_detalle, name="detalle"),
+    path("AgregarFavorito/<int:id>/", views.agregar_favorito, name="agregar_favorito"),
 ]
 
 urlpatterns = urladmin + urlsite
