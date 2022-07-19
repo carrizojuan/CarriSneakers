@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+
+
+<div class="row justify-content-center wishlist-header">
+    <div class="col-xs-12 col-sm-12">
+        <h3>Mis favoritos</h3>
+    </div>
+    <div class="col-sm-8">
+        {% for p in fav_productos %}
+            {% include 'productos/includes/card_favorito.html' %}
+        {% empty %}
+            <h4 class="justify-content-center">Tu lista de favoritos esta vacía</h4>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock contenido %}
+

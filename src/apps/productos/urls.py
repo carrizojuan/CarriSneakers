@@ -15,6 +15,7 @@ urladmin = [
 urlsite = [
     #path("ListarProductos/", views.listar, name="listar"),
     path("Listar/", views.Listar.as_view(), name="listar"),
+    path("Favoritos", views.ListarFavoritos.as_view(), name="listar_favoritos"),
     path("<int:pk>/", views.producto_detalle, name="detalle"),
     path("AgregarFavorito/<int:id>/", views.agregar_favorito, name="agregar_favorito"),
 ]

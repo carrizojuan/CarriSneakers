@@ -1,0 +1,18 @@
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if p.imagen %}
+                <img class="img-fluid rounded-start" src="{{p.imagen.url}}" alt="Card image cap" height="250px">
+            {% else %}
+                <img class="img-fluid rounded-start" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <h5 class="card-title">{{p.marca.nombre}} {{p.nombre}}</h5>
+            <p class="card-text">Descripcion</p>
+            <p class="card-text"><small class="text-muted">{{p.precio}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -50,7 +50,21 @@ class Listar(ListView):
         if nombre_producto:
             query = query.filter(nombre__icontains=nombre_producto) 
         return query
+
+class ListarFavoritos(ListView, LoginRequiredMixin):
+    template_name = "productos/favoritos.html"
+    model = Producto
     
+    def get_context_data(self, **kwargs):
+        context = super(ListarFavoritos, self).get_context_data(**kwargs) 
+        productos = Producto.objects.filter(activo=True)
+        favoritos = []
+        for p in productos:
+            if p.favorito.filter(id=self.request.user.id).exists():
+                favoritos.append(p)
+        context["fav_productos"] = favoritos
+        return context
+
 @superuser_required()
 def producto_detalle(request, pk):
     p = get_object_or_404(Producto, id=pk)
