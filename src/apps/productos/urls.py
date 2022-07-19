@@ -17,7 +17,7 @@ urlsite = [
     path("Listar/", views.Listar.as_view(), name="listar"),
     path("Favoritos", views.ListarFavoritos.as_view(), name="listar_favoritos"),
     path("<int:pk>/", views.producto_detalle, name="detalle"),
-    path("AgregarFavorito/<int:id>/", views.agregar_favorito, name="agregar_favorito"),
+    path("AgregarFavorito/<int:id>/", views.manejar_favorito, name="manejar_favorito"),
 ]
 
 urlpatterns = urladmin + urlsite

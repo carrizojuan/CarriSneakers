@@ -1,0 +1,24 @@
+.add-to-cart-text-button-container{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    padding-right: 15px;
+}
+
+.visit-product-detail{
+    margin: unset;
+    text-align: center;
+    display: block;
+}
+
+.card-head{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.fav-card-icon{
+    position: relative;
+    right: 0px;
+}

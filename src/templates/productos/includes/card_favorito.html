@@ -8,10 +8,20 @@
             {% endif %}
         </div>
         <div class="col-md-8">
-            <div class="card-body">
-            <h5 class="card-title">{{p.marca.nombre}} {{p.nombre}}</h5>
-            <p class="card-text">Descripcion</p>
-            <p class="card-text"><small class="text-muted">{{p.precio}}</small></p>
+            <div class="card-body">               
+                <div class="card-head">
+                    <h5 class="card-title">{{p.marca.nombre}} {{p.nombre}}</h5>
+                    <a class="fav-card-icon" href="{% url 'productos:manejar_favorito' id=p.id %}">
+                        <i class="fa-solid fa-trash-can fa-lg"></i>  
+                    </a>
+                </div>
+                <p class="card-text">Descripcion</p>
+                <p class="card-text"><small class="text-muted"> ${{p.precio}}</small></p>
+            </div>
+            <div class="add-to-cart-text-button-container">
+                <a class="visit-product-detail" href="{% url 'productos:detalle' pk=p.id%}">
+                    <button type="button" class="btn btn-dark">Ver detalle</button>
+                </a>
             </div>
         </div>
     </div>

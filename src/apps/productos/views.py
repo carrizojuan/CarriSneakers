@@ -79,7 +79,7 @@ def producto_detalle(request, pk):
     return render(request, "productos/detalle.html", ctx)
 
 @superuser_required()
-def agregar_favorito(request, id):
+def manejar_favorito(request, id):
     p = get_object_or_404(Producto, id=id)
     if p.favorito.filter(id=request.user.id).exists():
         p.favorito.remove(request.user)
