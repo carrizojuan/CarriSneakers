@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from apps.comentarios import views as views_c
 
 app_name = "productos"
 
@@ -18,6 +19,7 @@ urlsite = [
     path("Favoritos", views.ListarFavoritos.as_view(), name="listar_favoritos"),
     path("<int:pk>/", views.producto_detalle, name="detalle"),
     path("AgregarFavorito/<int:id>/", views.manejar_favorito, name="manejar_favorito"),
+    path("<int:pk>/comentar", views_c.Agregar.as_view(), name="agregar_comentario")
 ]
 
 urlpatterns = urladmin + urlsite

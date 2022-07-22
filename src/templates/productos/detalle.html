@@ -4,15 +4,13 @@
 {% block contenido %}
     <div class="row">
         <div class="position-relative" style="top: -1rem; right: 0.5rem" id="favourite-section">
-            {% if es_favorito %}
-                <a href="{% url 'productos:agregar_favorito' id=producto.id %}">
-                    <i class="fa-solid fa-heart fa-lg"></i>
-                </a>
-            {% else %}
-                <a href="{% url 'productos:agregar_favorito' id=producto.id %}">
+            <a href="{% url 'productos:manejar_favorito' id=producto.id %}">
+                {% if es_favorito %}
+                    <i class="fa-solid fa-heart fa-lg"></i>  
+                {% else %}
                     <i class="fa-regular fa-heart fa-lg"></i>
-                </a>
-            {% endif %}
+                {% endif %}
+            </a>            
         </div>
         <div class="col-md-6">
             <h1>{{producto.marca}} {{producto.nombre}}</h1> 
@@ -38,5 +36,6 @@
             <a href="{% url 'productos:admin_listar' %}">Volver</a>
         </div>
     </div>
-    
+    <hr>
+    {% include 'productos/comentarios.html' %}
 {% endblock contenido %}
