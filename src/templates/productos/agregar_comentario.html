@@ -1,8 +1,11 @@
-<form action="POST" class="form-outline mb-4">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input style="margin-bottom: 5px" type="text" id="addANote" class="form-control" placeholder="Type comment..." />
-    <a href="{% url 'productos:agregar_comentario' producto.id %}" class="form-label">
-        <button class="btn btn-secondary btn-sm">Agregar comentario</button>
-    </a>
-</form>
+{% extends "base/base.html" %}
+
+{% block contenido %}
+    <form method="POST" action="" class="form-outline mb-4" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="Agregar">
+        
+    </form>
+{% endblock contenido %}
+

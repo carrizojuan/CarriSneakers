@@ -9,6 +9,8 @@ from django.urls import reverse_lazy
 
 from apps.core.decorators import superuser_required
 from apps.core.mixins import SuperUserRequiredMixin
+from apps.comentarios.forms import ComentarioForm
+from apps.comentarios.models import Comentario
 
 from .models import Producto
 from .forms import ProductoForm
@@ -68,14 +70,31 @@ class ListarFavoritos(ListView, LoginRequiredMixin):
 @superuser_required()
 def producto_detalle(request, pk):
     p = get_object_or_404(Producto, id=pk)
-    ctx = {
-        "producto": p
-    }
+    form = ComentarioForm()
+    comentarios = Comentario.objects.all().filter(producto=p.id).order_by('-id')
+    cant_comentarios = comentarios.count()
+
     if request.user.is_authenticated:
         favorito = False
         if p.favorito.filter(id=request.user.id).exists():
             favorito = True
-    ctx["es_favorito"] = favorito
+
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form.instance.usuario = request.user
+            form.instance.producto = p
+            form.save()
+            return redirect("productos:detalle", pk)
+   
+    ctx = {
+        "producto": p,
+        "form": form,
+        "es_favorito": favorito,
+        "comentarios": comentarios,
+        "cant_comentarios": cant_comentarios
+    }
+
     return render(request, "productos/detalle.html", ctx)
 
 @superuser_required()
