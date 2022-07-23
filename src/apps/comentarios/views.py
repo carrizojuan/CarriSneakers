@@ -19,10 +19,10 @@ class Agregar(CreateView):
         form.instance.usuario = self.request.user
         form.instance.producto_id = self.kwargs['pk']
 
-def agregar(request, id):
+""" def agregar(request, id):
     producto = Producto.objects.get(id=id)
     form = ComentarioForm(instance=producto)
-    comentarios = Comentario.objects.all().filter(producto=producto.id).order_by('comentario_id')
+    
     if request.method == "POST":
         form = ComentarioForm(request.POST, instance=producto)
         if form.is_valid():
@@ -36,7 +36,6 @@ def agregar(request, id):
         form = ComentarioForm()
 
     context = {
-        'form': form,
-        'comentarios': comentarios
+        'form': form
     }
-    return render(request, 'productos/agregar_comentario.html', context)
+    return render(request, 'productos/agregar_comentario.html', context) """

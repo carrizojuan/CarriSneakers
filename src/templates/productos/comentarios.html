@@ -71,20 +71,23 @@
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-0 border" style="background-color: #f0f2f5;">
                 <div class="card-body p-4">
-                    <div class="d-flex flex-row align-items-center" style="margin-bottom: 10px">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
-                        height="25" />
-                        <p class="small mb-0 ms-2">{{user}}</p>
-                    </div>
-                    <form method="POST" action="{% url 'productos:detalle' pk=producto.id %}">
-                        {% csrf_token %}
-                        <div class="form-outline mb-4">
-                            {{form}}
-                            <button class="btn btn-primary btn-block" type="submit" style="margin-top:5px">
-                                Agregar
-                            </button>
+                    {% if user.is_authenticated %}
+                        <div class="d-flex flex-row align-items-center" style="margin-bottom: 10px">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
+                            height="25" />
+                            <p class="small mb-0 ms-2">{{user}}</p>
                         </div>
-                    </form>
+                        <form method="POST" action="{% url 'productos:detalle' pk=producto.id %}">
+                            {% csrf_token %}
+                            <div class="form-outline mb-4">
+                                {{form}}
+                                <button class="btn btn-primary btn-block" type="submit" style="margin-top:5px">
+                                    Agregar
+                                </button>
+                            </div>
+                        </form>
+                    {% else %}
+                    {% endif %}
                     {% for comentario in comentarios %}
                         {% include 'productos/card_comentario.html' %}
                     {% endfor %}

@@ -67,25 +67,24 @@ class ListarFavoritos(ListView, LoginRequiredMixin):
         context["fav_productos"] = favoritos
         return context
 
-@superuser_required()
+
 def producto_detalle(request, pk):
     p = get_object_or_404(Producto, id=pk)
     form = ComentarioForm()
     comentarios = Comentario.objects.all().filter(producto=p.id).order_by('-id')
     cant_comentarios = comentarios.count()
-
+    favorito = False
     if request.user.is_authenticated:
-        favorito = False
         if p.favorito.filter(id=request.user.id).exists():
             favorito = True
 
-    if request.method == "POST":
-        form = ComentarioForm(request.POST)
-        if form.is_valid():
-            form.instance.usuario = request.user
-            form.instance.producto = p
-            form.save()
-            return redirect("productos:detalle", pk)
+        if request.method == "POST":
+            form = ComentarioForm(request.POST)
+            if form.is_valid():
+                form.instance.usuario = request.user
+                form.instance.producto = p
+                form.save()
+                return redirect("productos:detalle", pk)
    
     ctx = {
         "producto": p,
