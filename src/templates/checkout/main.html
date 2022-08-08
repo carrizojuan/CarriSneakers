@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block contenido %}
+     <div class="row">
+		<div class="col-lg-6">
+			<div class="container" id="form-wrapper">
+                {% include "checkout/form.html" %}
+                <div style="visibility: hidden;" class="container" id="payment-info">
+                    <small>Paypal Options</small>
+                </div>
+			</div>
+			
+		</div>
+
+		<div class="col-lg-6">
+			<div class="container">
+                <a  class="btn btn-outline-dark" href="{% url 'carrito:visualizar' %}">&#x2190; Back to Cart</a>
+				<hr>
+				<h3>Order Summary</h3>
+				<hr>
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src=""></div>
+					<div style="flex:2"><p>Product 1</p></div>
+					<div style="flex:1"><p>$20.00</p></div>
+					<div style="flex:1"><p>x2</p></div>
+				</div>
+				<h5>Items:   2</h5>
+				<h5>Total:   $4</h5>
+			</div>
+		</div>
+	</div>
+{% endblock contenido %}

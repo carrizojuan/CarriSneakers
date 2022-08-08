@@ -27,12 +27,14 @@ urlpatterns = [
     #Includes
     path("Productos/", include("apps.productos.urls")),
     path("Usuario/", include("apps.usuarios.urls")),
+    path("Carrito/", include("apps.carritos.urls")),
 
     #Urls propias del proyecto
     #path("", views.inicio, name="inicio"),
     path("", views.Inicio.as_view(), name = "inicio"),
     path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
-    path("logout/", auth_views.logout_then_login, name="logout")
+    path("logout/", auth_views.logout_then_login, name="logout"),
+    path("checkout/", views.checkout, name="checkout"),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

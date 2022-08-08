@@ -20,3 +20,7 @@ class Inicio(TemplateView):
         context = super(Inicio, self).get_context_data(**kwargs)
         context["ult_productos"] = Producto.objects.all().order_by('-id')[:2]
         return context
+    
+def checkout(request):
+    template_name = "checkout/main.html"
+    return render(request, template_name)
