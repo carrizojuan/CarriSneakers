@@ -10,38 +10,67 @@
 				<br>
 				<table class="table">
 					<tr>
-						<th><h5>Productos: <strong>3</strong></h5></th>
-						<th><h5>Total:<strong> $42</strong></h5></th>
+						<th><h5>Productos: <strong>{{orden.get_cant_items}}</strong></h5></th>
+						<th><h5>Total:<strong> ${{orden.get_total_carrito}}</strong></h5></th>
 						<th>
-							<a  style="float:right; margin:5px;" class="btn btn-success" href="#">Comprar</a>
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Comprar</a>
 						</th>
 					</tr>
 				</table>
 			</div>
 			<br>
 			<div class="container">
-                <div class="row">
+				<table class="table">
+					<tr>
+						<th></th>
+						<th><h5>Producto</h5></th>
+						<th><h5>Precio</h5></th>
+						<th><h5>Cantidad</h5></th>
+						<th><h5>Total</h5></th>
+					</tr>
+					{% for item in items %}
+					<tr>
+						<td><img class="row-image" height="100px" src="{{item.producto.imagen.url}}"></td>
+						<td><p>{{item.producto.nombre}}</p></td>
+						<td><p>{{item.producto.precio}}</p></td>
+						<td>
+							<div style="display:flex">
+								{{item.cantidad}}
+								<div class="quantity" style="display:flex; flex-direction:column; justify-content:space-between; margin-left: 5px">
+									<img height="10px" src="https://stepswithcode.s3-us-west-2.amazonaws.com/m1-prt8/3+arrow-up.png"/>
+							
+									<img height="10px" src="https://stepswithcode.s3-us-west-2.amazonaws.com/m1-prt8/2+arrow-down.png"/>
+								</div>
+							</div>
+						</td>
+						<td><p>{{item.get_total}}</p></td>
+					</tr>
+					{% endfor %}
+				</table>
+                {% comment %} <div class="row">
 					<div style="flex:2"></div>
 					<div style="flex:2"><strong>Producto</strong></div>
 					<div style="flex:1"><strong>Precio</strong></div>
 					<div style="flex:1"><strong>Cantidad</strong></div>
 					<div style="flex:1"><strong>Total</strong></div>
 				</div>
-                
-                <div class="row">
-                    <div style="flex:2"><img class="row-image" src=""></div>
-					<div style="flex:2"><p>Producto 1</p></div>
-					<div style="flex:1"><p>$20</p></div>
-					<div style="flex:1">
-						<p class="quantity">2</p>
-						{% comment %} <div class="quantity">
-							<img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
-					
-							<img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
-						</div> {% endcomment %}
+                {% for item in items %}
+					<div class="row">
+						<div style="flex:2"><img class="row-image" height="100px" src="{{item.producto.imagen.url}}"></div>
+						<div style="flex:2"><p>{{item.producto.nombre}}</p></div>
+						<div style="flex:1"><p>{{item.producto.precio}}</p></div>
+						<div style="flex:1">
+							<p class="quantity">{{item.cantidad}}</p>
+							<!-- <div class="quantity">
+								<img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
+						
+								<img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
+							</div> -->
+						</div>
+						<div style="flex:1"><p>$32</p></div>
 					</div>
-					<div style="flex:1"><p>$32</p></div>
-                </div>
+					<hr>
+				{% endfor %} {% endcomment %}    
 			</div>
 		</div>
 	</div>
