@@ -4,7 +4,7 @@ import json
 from apps.ordenes.models import Orden, OrdenItem, Producto
 # Create your views here.
 
-def updateItem(request):
+""" def updateItem(request):
     data = json.loads(request.body)
     producto_id = data['producto_id']
     action = data['action']
@@ -31,37 +31,27 @@ def updateItem(request):
 
     if ordenItem.cantidad == 0:
         ordenItem.delete()
-    return JsonResponse("El producto fue agregado", safe=False)
+    return JsonResponse("El producto fue agregado", safe=False) """
 
 
-def addItem(request, pk):
+def updateItem(request, type, pk):
     usuario = request.user
     producto = Producto.objects.get(id=pk)
     orden, creado = Orden.objects.get_or_create(
-        usuario=usuario,
-        completado = False
+            usuario=usuario,
+            completado = False
     )
     ordenItem,creado = OrdenItem.objects.get_or_create(
         orden=orden,
         producto=producto
     )
-    ordenItem.cantidad = ordenItem.cantidad + 1 
-    ordenItem.save()
-    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+    if type == "add":
+        ordenItem.cantidad += 1
+    if type == "remove":
+        ordenItem.cantidad -= 1
 
-def removeItem(request, pk):
-    usuario = request.user
-    producto = Producto.objects.get(id=pk)
-    orden = Orden.objects.get(
-        usuario=usuario,
-        completado = False
-    )
-    ordenItem = OrdenItem.objects.get(
-        orden=orden,
-        producto=producto
-    )
-    ordenItem.cantidad = ordenItem.cantidad - 1
     ordenItem.save()
+
     if ordenItem.cantidad == 0:
         ordenItem.delete()
     return HttpResponseRedirect(request.META["HTTP_REFERER"])

@@ -37,10 +37,10 @@
 							<div style="display:flex">
 								{{item.cantidad}}
 								<div class="quantity" style="display:flex; flex-direction:column; justify-content:space-between; margin-left: 5px">
-									<img height="10px" class="update-carrito" data-producto="{{item.producto.id}}" data-action="add" src="https://stepswithcode.s3-us-west-2.amazonaws.com/m1-prt8/3+arrow-up.png">
-							
-									
-									<a href="{% url 'orden:remove_item' pk=item.producto.id %}">
+									<a href="{% url 'orden:update_item' type='add' pk=item.producto.id %}">
+										<img height="10px" class="update-carrito" data-producto="{{item.producto.id}}" data-action="add" src="https://stepswithcode.s3-us-west-2.amazonaws.com/m1-prt8/3+arrow-up.png">
+									</a>
+									<a href="{% url 'orden:update_item' type='remove' pk=item.producto.id %}">
 										<img data-producto="{{item.producto.id}}" data-action="remove" height="10px" class="update-carrito" src="https://stepswithcode.s3-us-west-2.amazonaws.com/m1-prt8/2+arrow-down.png">
 									</a>
 								</div>
