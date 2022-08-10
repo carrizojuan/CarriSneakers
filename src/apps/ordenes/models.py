@@ -26,7 +26,7 @@ class Orden(models.Model):
         return str(self.id)
 
 class OrdenItem(models.Model):
-    producto = models.ForeignKey(Producto, on_delete=models.SET_NULL, null=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, null=True)
     orden = models.ForeignKey(Orden, on_delete=models.SET_NULL, null=True)
     cantidad = models.IntegerField(null=True, default=0, blank=True)
     fecha_agregado = models.DateField(auto_now_add=True)

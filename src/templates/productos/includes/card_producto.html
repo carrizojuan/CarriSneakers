@@ -34,7 +34,9 @@
     <!-- Product actions-->
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center">
-            <button data-producto="{{p.id}}" data-action="add" class="btn btn-outline-dark mt-auto agregar-carrito">Agregar a carrito</button>
+            <a href="{% url 'orden:add_item' pk=p.id %}">
+                <button data-producto="{{p.id}}" data-action="add" class="btn btn-outline-dark mt-auto update-carrito">Agregar a carrito</button>
+            </a>
         </div>
     </div>
 </div>

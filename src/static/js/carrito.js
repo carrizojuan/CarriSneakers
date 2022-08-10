@@ -1,4 +1,4 @@
-var btnsAgregarCarrito = document.getElementsByClassName('agregar-carrito');
+var btnsAgregarCarrito = document.getElementsByClassName('update-carrito');
 for (var i = 0; i < btnsAgregarCarrito.length; i++) {
     btnsAgregarCarrito[i].addEventListener('click', function() {
         var producto_id = this.dataset.producto
@@ -28,5 +28,6 @@ function updateOrdenUsuario(producto_id, action) {
     )
     .then(data => {
         console.log('data:', data);
+        location.reload()
     })
 }

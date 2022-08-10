@@ -7,6 +7,7 @@
                 {% include "checkout/form.html" %}
                 <div style="visibility: hidden;" class="container" id="payment-info">
                     <small>Paypal Options</small>
+					<button id="make-payment" type="submit">Realizar Pago</button>
                 </div>
 			</div>
 			
@@ -32,4 +33,20 @@
 			</div>
 		</div>
 	</div>
+
+<!-- <script>
+	var form = document.getElementById("form");
+	form.addEventListener("submit", function(e){
+		e.preventDefault();
+		document.getElementById("form-button").style.visibility="hidden";
+		document.getElementById("payment-info").style.visibility="visible";
+	})
+
+	document.getElementById("make-payment").addEventListener("click", function(e) {
+		submitFormData()
+	})
+	function submitFormData() {
+		console.log("Submit data")
+	}
+</script> -->
 {% endblock contenido %}
