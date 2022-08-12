@@ -42,10 +42,10 @@ class OrdenItem(models.Model):
 class DirecconEnvio(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True)
     orden = models.ForeignKey(Orden, on_delete=models.SET_NULL, null=True)
-    direccion = models.CharField(max_length=255, null=False)
-    ciudad = models.CharField(max_length=255, null=False)
-    provincia = models.CharField(max_length=255, null=False)
-    codigo_postal = models.CharField(max_length=255, null=False)
+    direccion = models.CharField(max_length=255)
+    ciudad = models.CharField(max_length=255)
+    provincia = models.CharField(max_length=255)
+    codigo_postal = models.CharField(max_length=255)
     fecha_agregado = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

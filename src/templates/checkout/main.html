@@ -5,10 +5,10 @@
 		<div class="col-lg-6">
 			<div class="container" id="form-wrapper">
                 {% include "checkout/form.html" %}
-                <div style="visibility: hidden;" class="container" id="payment-info">
+                <!-- <div style="visibility: hidden;" class="container" id="payment-info">
                     <small>Paypal Options</small>
 					<button id="make-payment" type="submit">Realizar Pago</button>
-                </div>
+                </div> -->
 			</div>
 			
 		</div>
@@ -42,11 +42,11 @@
 		document.getElementById("payment-info").style.visibility="visible";
 	})
 
-	document.getElementById("make-payment").addEventListener("click", function(e) {
+	/* document.getElementById("make-payment").addEventListener("click", function(e) {
 		submitFormData()
 	})
 	function submitFormData() {
 		console.log("Submit data")
-	}
+	} */
 </script> -->
 {% endblock contenido %}

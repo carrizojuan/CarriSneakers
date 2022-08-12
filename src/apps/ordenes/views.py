@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect 
+from django.contrib.auth.decorators import login_required
 import json
 from apps.ordenes.models import Orden, OrdenItem, Producto
 # Create your views here.
@@ -33,7 +34,7 @@ from apps.ordenes.models import Orden, OrdenItem, Producto
         ordenItem.delete()
     return JsonResponse("El producto fue agregado", safe=False) """
 
-
+@login_required
 def updateItem(request, type, pk):
     usuario = request.user
     producto = Producto.objects.get(id=pk)

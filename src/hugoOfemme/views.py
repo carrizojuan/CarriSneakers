@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from apps.ordenes.models import Orden
+from apps.ordenes.forms import DireccionEnvioForm
 from apps.productos.models import Producto
 from django.views.generic.base import TemplateView
 
@@ -19,42 +21,47 @@ class Inicio(TemplateView):
         context = super(Inicio, self).get_context_data(**kwargs)
         context["ult_productos"] = Producto.objects.all().order_by('-id')[:2]
         return context
-    
+
+@login_required
 def checkout(request):
     template_name = "checkout/main.html"
-    if request.user.is_authenticated:
-        usuario = request.user.id
-        orden, creado = Orden.objects.get_or_create(
-            usuario=usuario,
-            completado = False
-        )
-        items = orden.ordenitem_set.all()
-    else:
-        items = []
-        orden = {
-            'get_total_carrito':0,
-            'get_cant_items': 0
-        }
+    form = DireccionEnvioForm()
+    usuario = request.user
+
+    orden, creado = Orden.objects.get_or_create(
+        usuario=usuario,
+        completado = False
+    )
+    items = orden.ordenitem_set.all()
+    print(request.method)
+    if request.method == "POST":
+        print("ESTOY ADENTO DE REQUEST POST")
+        form = DireccionEnvioForm(request.POST)
+        if form.is_valid():
+            form.instance.usuario = request.user
+            form.instance.orden = orden
+            form.save()
+            orden.completado = True     
+            orden.save()
+
+            return redirect("inicio")
+
     ctx = {
         'items': items,
         'orden': orden,
+        'direccion_form': form
     }
     return render(request, template_name, ctx)
 
+@login_required
 def carrito(request):
-    if request.user.is_authenticated:
-        usuario = request.user.id
-        orden, creado = Orden.objects.get_or_create(
-            usuario=usuario,
-            completado = False
-        )
-        items = orden.ordenitem_set.all()
-    else:
-        items = []
-        orden = {
-            'get_total_carrito':0,
-            'get_cant_items': 0
-        }
+    
+    usuario = request.user
+    orden, creado = Orden.objects.get_or_create(
+        usuario=usuario,
+        completado = False
+    )
+    items = orden.ordenitem_set.all()
 
     template_name = "carrito/main.html"
     ctx = {
