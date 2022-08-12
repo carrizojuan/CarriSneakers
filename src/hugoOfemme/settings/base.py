@@ -10,9 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from distutils.debug import DEBUG
 from pathlib import Path
-
 from django.urls import reverse_lazy
+import environ, os
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(0=_=y_0y3#p0d%rjsvl--f&!7dex#)!$mobbg!440fmmdvkui'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-
+DEBUG = os.environ.get('DEBUG')
 
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
