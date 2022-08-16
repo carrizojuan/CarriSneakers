@@ -29,6 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+
 DEBUG = os.environ.get('DEBUG')
 
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
@@ -54,6 +55,7 @@ LOCAL_APPS = [
     'apps.usuarios',
     'apps.comentarios',
     'apps.ordenes',
+    'apps.newsletters',
 ]
 
 THIRD_APPS = []
