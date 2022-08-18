@@ -1,5 +1,5 @@
-ve_femme
+ve_femme/
 .idea/
-*.pyc
-.pyc
-src/hugoOfemme/settings/dev.py
+__pycache__/
+*.env
+
