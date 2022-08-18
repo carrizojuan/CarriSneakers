@@ -1,15 +1,15 @@
 from django import forms
-from .models import NewsletterUser, Newsletter
+""" from .models import NewsletterUser, Newsletter """
 
-class NewsletterSuscribeForm(forms.ModelForm):
+""" class NewsletterSuscribeForm(forms.ModelForm):
 
-    class meta:
+    class Meta:
         model = NewsletterUser
-        field = ['correo']
+        fields = ['correo']
 
 class NewsletterCreationForm(forms.ModelForm):
 
-    class meta:
+    class Meta:
         model = Newsletter
-        field = ['name', 'subject', 'body', 'email']
+        fields = ['name', 'subject', 'body', 'email'] """
     

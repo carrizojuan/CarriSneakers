@@ -30,7 +30,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
+
 DEBUG = os.environ.get('DEBUG')
+
+
 
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
@@ -55,12 +58,13 @@ LOCAL_APPS = [
     'apps.usuarios',
     'apps.comentarios',
     'apps.ordenes',
-    'apps.newsletters',
 ]
 
 THIRD_APPS = []
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
+
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

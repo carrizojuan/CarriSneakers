@@ -6,6 +6,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
 from apps.core.decorators import superuser_required
 from apps.core.mixins import SuperUserRequiredMixin
@@ -30,6 +31,7 @@ def listar(request):
 
 class Listar(ListView):
     template_name = "productos/listar.html"
+    paginate_by = 10
     model = Producto
     context_object_name = "lista_productos"
 
