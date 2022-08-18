@@ -1,1 +1,2 @@
 web: gunicorn hugoOfemme.wsgi
+DISABLE_COLLECTSTATIC=1
